@@ -48,10 +48,10 @@ public class Frame extends javax.swing.JFrame {
         mongo=new MongoClient("localhost");
         cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
-          .setOAuthConsumerKey("zEK4lGFBMxFNExBocZFbKJ46m")
-          .setOAuthConsumerSecret("P5EIE6r1LA5rK2y04IWxs5gDWQADcyDGjX3xteDIdqCR2kzugK")
-          .setOAuthAccessToken("3959123122-kvcvlXM2prtzybhaKCoPCoLqPBs6Iw76Ndusnju")
-          .setOAuthAccessTokenSecret("3QhLyUJKtxLY48QpZP5C8p1F42NpEVlmqfTVZAPiCeNZc");
+          .setOAuthConsumerKey("")
+          .setOAuthConsumerSecret("")
+          .setOAuthAccessToken("")
+          .setOAuthAccessTokenSecret("");
         tf = new TwitterFactory(cb.build());
         twitter = tf.getInstance();
         timer = new Timer();
