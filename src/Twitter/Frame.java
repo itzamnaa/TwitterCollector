@@ -47,7 +47,7 @@ public class Frame extends javax.swing.JFrame {
         database="twitter";//nombre de la base de datos
         collection="twitts";//colleccion
         mongo=new MongoClient("localhost");
-        //Aqui va las llaves, las quite para que no se vieran publicas
+        //Aqui van las llaves, las quite para que no se vieran publicas
         cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
           .setOAuthConsumerKey("")
@@ -121,11 +121,11 @@ public class Frame extends javax.swing.JFrame {
         if(status.getRetweetedStatus()!=null)
             doc.append("rstate",status.getRetweetedStatus().getText());
         
-        tacol.setText(tacol.getText()+doc.toJson()+"\n");
+        tacol.setText(tacol.getText()+doc.toJson()+"\n");//imprimimos el tweet en el frame
         return doc;
     }
     //Ejecutamos la query, convertimos e insertamos el resultado
-    //la vandera evita que el timer alcanze a el procesamiento de tweets
+    //la bandera evita que el timer alcanze a el procesamiento de tweets
     public void getTwitters(){
         flag=false;
         query = new Query(squery);
