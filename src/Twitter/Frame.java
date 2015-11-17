@@ -41,11 +41,13 @@ public class Frame extends javax.swing.JFrame {
      */
     public Frame() {
         initComponents();
-        squery="#YOLO";
+        squery="#YOLO";//Este es el hashtag a buscar
         flag=true;
-        database="twitter";
-        collection="twitts";
+        //Nos conectamos a Mongo DB
+        database="twitter";//nombre de la base de datos
+        collection="twitts";//colleccion
         mongo=new MongoClient("localhost");
+        //Aqui va las llaves, las quite para que no se vieran publicas
         cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
           .setOAuthConsumerKey("")
@@ -55,6 +57,7 @@ public class Frame extends javax.swing.JFrame {
         tf = new TwitterFactory(cb.build());
         twitter = tf.getInstance();
         timer = new Timer();
+        //Colecctamos twiits cada 10 segundos para que no se repitan
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run(){
@@ -69,7 +72,7 @@ public class Frame extends javax.swing.JFrame {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                mongo.close();
+                mongo.close();//cerramos la conexion al cerrar la ventana
             }
 
             @Override
@@ -95,10 +98,12 @@ public class Frame extends javax.swing.JFrame {
     }
     
     public void insertTwitt(Document doc){
+        //insertamos un objeto documnto en la coleccion
         mongo.getDatabase(database).getCollection(collection)
                .insertOne(doc);
     }
     
+    //Esta funcion convierte un estatus que es un objeto tweets a un Document que es el objeto para insertar en mongo
     public Document statustoJSON(Status status){
         Document doc=new Document();
         if(status.getText()!=null)
@@ -119,7 +124,8 @@ public class Frame extends javax.swing.JFrame {
         tacol.setText(tacol.getText()+doc.toJson()+"\n");
         return doc;
     }
-    
+    //Ejecutamos la query, convertimos e insertamos el resultado
+    //la vandera evita que el timer alcanze a el procesamiento de tweets
     public void getTwitters(){
         flag=false;
         query = new Query(squery);
@@ -267,6 +273,7 @@ public class Frame extends javax.swing.JFrame {
 
     private void contadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contadorActionPerformed
         contador.setText(""+mongo.getDatabase(database).getCollection(collection).count());
+        //este boton muestr el contador de tweets
     }//GEN-LAST:event_contadorActionPerformed
 
     private void bsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsalirActionPerformed
