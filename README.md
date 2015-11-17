@@ -3,8 +3,11 @@ Proyecto aplicaciones web
 Colecta tweets y los agrega a una base de datos (mongo)
 
 Integrantes:
+
 Jose Fabian Martinez Pizarra
+
 Miguel Breceda de Lara
+
 Mario Alverto Sandoval
 
 Clave y Valor de los objetos JSON:
